@@ -1,0 +1,16 @@
+<resources>
+    <string name="count_initial_value">0</string>
+    <string name="button_label">Send</string>
+    <string name="toast_message">Toast!</string>
+    <string name="input_placeholder">Write a message</string>
+
+    <string-array name="names">
+        <item>Electrician</item>
+        <item>Dry Wall Repair</item>
+        <item>Plumbing</item>
+        <item>Locksmith</item>
+
+    </string-array>
+    <string name="title_activity_chat">activity_chat</string>
+
+</resources>
