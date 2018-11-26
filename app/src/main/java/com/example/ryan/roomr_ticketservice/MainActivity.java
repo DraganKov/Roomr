@@ -4,98 +4,107 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    private Context mContext;
+    RelativeLayout mRelativeLayout;
+    private RecyclerView mRecyclerView;
+    private myAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
     Button selectContractor;
     Button openChat;
     ArrayList<PropertyObj> propertyList;
-    private RecyclerView mRecyclerView;
-    private myAdapter mAdapter;
 
-    private RecyclerView.LayoutManager mLayoutManager;
     RecyclerItemClickListener openChatplz;
-
-    private String[] myDataset = {
-            "123 Harry Street",
-            "419 Marla Avenue",
-            "667 Sarah Crescent"
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mContext = getApplicationContext();
+
+        // Change the action bar color
+        getSupportActionBar().setBackgroundDrawable(
+                new ColorDrawable(Color.parseColor("#FFFF00BF"))
+        );
+
+        // Get the widgets reference from XML layout
+        //mRelativeLayout = (RelativeLayout) findViewById(R.id.);
+
+        openChat = (Button) findViewById(R.id.btnOpenChat);
+        selectContractor = (Button) findViewById(R.id.btnSelectContractor);
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
-        RecyclerView recyclerView = (RecyclerView) this.findViewById(R.id.my_recycler_view);
+        final String[] myDataset = {
+                "123 Harry Street",
+                "419 Marla Avenue",
+                "667 Sarah Crescent"
+        };
+
+        // Intilize an array list from array
+        final List<String> addressList = new ArrayList(Arrays.asList(myDataset));
+
+        // Define a layout for RecyclerView
+        mLayoutManager = new GridLayoutManager(mContext, 3);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // Initialize a new instance of RecyclerView Adapter instance
+        mAdapter = new myAdapter(mContext, addressList);
+
+        // Set the adapter for RecyclerView
+        mRecyclerView.setAdapter(mAdapter);
+
+        // Set a click listener for add item button
+        openChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Specify the position
+                int position = 0;
+                String itemLabel = "testing";
+
+                // Add an item to animals list
+                addressList.add(position, "" + itemLabel);
+
+
+                // Notify the adapter that an item inserted
+                mAdapter.notifyItemInserted(position);
+
+                // Scroll to newly added item position
+                mRecyclerView.scrollToPosition(position);
+
+                // Show the added item label
+                Toast.makeText(mContext, "Added : " + itemLabel, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+        /////////////////////////////////
+        //RecyclerView recyclerView = (RecyclerView) this.findViewById(R.id.my_recycler_view);
 
         selectContractor = findViewById(R.id.btnSelectContractor);
         selectContractor.setOnClickListener(onSelectContractor);
-        openChat = findViewById(R.id.btnOpenChat);
-        openChat.setOnClickListener(onOpenChat);
-
-
-        // Construct the data source
-        //createTestTenants();
-
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        // specify an adapter (see also next example)
-        //mAdapter = new myAdapter(myDataset);
-        mAdapter = new myAdapter(myDataset, openChatplz) {
-            private static final String TAG = "Clicked";
-
-            public void onItemClick(View v, int position) {
-                Log.d(TAG, "clicked position:" + position);
-                // do what ever you want to do with it
-                Intent intent = new Intent(MainActivity.this, ChatActivity.class);
-                startActivity(intent);
-            }
-        };
-        mRecyclerView.setAdapter(mAdapter);
-
-
-
-
-
-
-
     }
-
-    private Context getContext() {
-
-        return this;
-    };
-
-
-    private View.OnClickListener onOpenChat = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, ChatActivity.class);
-            startActivity(intent);
-        }
-    };
-
     private View.OnClickListener onSelectContractor = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -104,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private AlertDialog buildDialog() {
+    private AlertDialog buildDialog () {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Pick a Contractor");
@@ -138,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //replace this with an actual database fetch for tenants based on Landlords Properties
-    private void createTestTenants() {
+    private void createTestTenants () {
         TenantObj ten1 = new TenantObj("Mike Rose", "123 Harry Street");
         TenantObj ten2 = new TenantObj("Elise Rose", "123 Harry Street");
         TenantObj ten3 = new TenantObj("Madison Escalade", "123 Harry Street");
@@ -178,10 +187,26 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+        //openChat = findViewById(R.id.btnOpenChat);
+        //openChat.setOnClickListener(onOpenChat);
+
+
+        // Construct the data source
+        //createTestTenants();
 
 
 
 
 
-/////////////////////////////////fin/////////////////////////////
+            /*private View.OnClickListener onOpenChat = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+                    startActivity(intent);
+                }
+            };*/
+
+
+
+/////////////////////////////////fin///////////////////////////
 }
