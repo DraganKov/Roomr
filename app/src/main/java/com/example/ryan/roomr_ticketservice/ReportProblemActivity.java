@@ -130,7 +130,10 @@ public class ReportProblemActivity extends AppCompatActivity {
             else{
                 ReportProblemActivity.NetworkHelperTask helper = new ReportProblemActivity.NetworkHelperTask();
                 helper.execute();
+                Intent intent = new Intent(ReportProblemActivity.this, MainActivity.class);
+                startActivity(intent);
             }
+
         }
     };
 
