@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button selectContractor;
     Button openChat;
-    ArrayList<PropertyObj> propertyList;
+    ArrayList<House> propertyList;
 
     RecyclerItemClickListener openChatplz;
 
@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Get the widgets reference from XML layout
         //mRelativeLayout = (RelativeLayout) findViewById(R.id.);
-
         openChat = (Button) findViewById(R.id.btnOpenChat);
         selectContractor = (Button) findViewById(R.id.btnSelectContractor);
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
@@ -139,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         contractorName = "";
                 }
-                Intent intent = new Intent(MainActivity.this, DemoCommuncation.class);
+                Intent intent = new Intent(MainActivity.this, ReportProblemActivity.class);
                 intent.putExtra("NAME", contractorName);
                 startActivity(intent);
             }
@@ -150,38 +149,38 @@ public class MainActivity extends AppCompatActivity {
 
     //replace this with an actual database fetch for tenants based on Landlords Properties
     private void createTestTenants () {
-        TenantObj ten1 = new TenantObj("Mike Rose", "123 Harry Street");
-        TenantObj ten2 = new TenantObj("Elise Rose", "123 Harry Street");
-        TenantObj ten3 = new TenantObj("Madison Escalade", "123 Harry Street");
-        TenantObj ten4 = new TenantObj("Mike Rose", "123 Harry Street");
+        Tenant ten1 = new Tenant("Mike Rose", "123 Harry Street");
+        Tenant ten2 = new Tenant("Elise Rose", "123 Harry Street");
+        Tenant ten3 = new Tenant("Madison Escalade", "123 Harry Street");
+        Tenant ten4 = new Tenant("Mike Rose", "123 Harry Street");
 
-        TenantObj ten5 = new TenantObj("George Hyman", "419 Marla Avenue");
-        TenantObj ten6 = new TenantObj("Ryan Bustman", "419 Marla Avenue");
-        TenantObj ten7 = new TenantObj("Kevin Gates", "419 Marla Avenue");
+        Tenant ten5 = new Tenant("George Hyman", "419 Marla Avenue");
+        Tenant ten6 = new Tenant("Ryan Bustman", "419 Marla Avenue");
+        Tenant ten7 = new Tenant("Kevin Gates", "419 Marla Avenue");
 
-        TenantObj ten8 = new TenantObj("Igor Titov", "667 Sarah Crescent");
-        TenantObj ten9 = new TenantObj("Maria Titov", "667 Sarah Crescent");
+        Tenant ten8 = new Tenant("Igor Titov", "667 Sarah Crescent");
+        Tenant ten9 = new Tenant("Maria Titov", "667 Sarah Crescent");
 
         //put tenants in ArrayLists based on Property
-        ArrayList<TenantObj> prop1 = new ArrayList<TenantObj>();
+        ArrayList<Tenant> prop1 = new ArrayList<Tenant>();
         prop1.add(ten1);
         prop1.add(ten2);
         prop1.add(ten3);
         prop1.add(ten4);
 
-        ArrayList<TenantObj> prop2 = new ArrayList<TenantObj>();
+        ArrayList<Tenant> prop2 = new ArrayList<Tenant>();
         prop2.add(ten5);
         prop2.add(ten6);
         prop2.add(ten7);
 
-        ArrayList<TenantObj> prop3 = new ArrayList<TenantObj>();
+        ArrayList<Tenant> prop3 = new ArrayList<Tenant>();
         prop3.add(ten8);
         prop3.add(ten9);
 
 
-        PropertyObj harry123 = new PropertyObj("123 Harry Street", prop1);
-        PropertyObj marla419 = new PropertyObj("419 Marla Avenue", prop2);
-        PropertyObj sarah667 = new PropertyObj("667 Sarah Crescent", prop3);
+        House harry123 = new House("123 Harry Street", prop1);
+        House marla419 = new House("419 Marla Avenue", prop2);
+        House sarah667 = new House("667 Sarah Crescent", prop3);
 
         propertyList.add(harry123);
         propertyList.add(marla419);
