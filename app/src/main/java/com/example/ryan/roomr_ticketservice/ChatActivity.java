@@ -21,7 +21,7 @@ public class ChatActivity extends AppCompatActivity implements RoomListener {
 
     // replace this with a real channelID from Scaledrone dashboard
     private String channelID = "4lmrrOD8Ll2SkO2A";
-    private String roomName = "Landlord-room";
+    private String roomName = "observable-room1";
     private EditText editText;
     private Scaledrone scaledrone;
     private MessageAdapter messageAdapter;
