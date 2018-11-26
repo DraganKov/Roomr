@@ -12,14 +12,14 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="456dp"
-        android:layout_marginBottom="108dp"
+        android:layout_height="443dp"
+        android:layout_marginBottom="200dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints"
         tools:itemCount="8"
         tools:layout_editor_absoluteX="0dp"
-        tools:listitem="@layout/recycler_view_item"
-        tools:ignore="MissingConstraints" />
+        tools:listitem="@layout/recycler_view_item_1" />
 
     <Button
         android:id="@+id/btnOpenChat"

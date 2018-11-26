@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.Window;
@@ -59,16 +60,23 @@ public class MainActivity extends AppCompatActivity {
                 "419 Marla Avenue",
                 "667 Sarah Crescent"
         };
+        final String[] myNameset = {
+                "Mike Rose",
+                "Elise Rose",
+                "Madison Escalade"
+        };
 
         // Intilize an array list from array
         final List<String> addressList = new ArrayList(Arrays.asList(myDataset));
+        final List<String> nameList = new ArrayList(Arrays.asList(myNameset));
 
         // Define a layout for RecyclerView
-        mLayoutManager = new GridLayoutManager(mContext, 3);
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+
         // Initialize a new instance of RecyclerView Adapter instance
-        mAdapter = new myAdapter(mContext, addressList);
+        mAdapter = new myAdapter(mContext, addressList, nameList);
 
         // Set the adapter for RecyclerView
         mRecyclerView.setAdapter(mAdapter);
@@ -78,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Specify the position
-                int position = 0;
+                int position = 3;
                 String itemLabel = "testing";
 
                 // Add an item to animals list
@@ -93,8 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Show the added item label
                 Toast.makeText(mContext, "Added : " + itemLabel, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, ChatActivity.class);
-                startActivity(intent);
+
 
             }
         });
@@ -106,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         selectContractor = findViewById(R.id.btnSelectContractor);
         selectContractor.setOnClickListener(onSelectContractor);
     }
+
     private View.OnClickListener onSelectContractor = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -152,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         Tenant ten1 = new Tenant("Mike Rose", "123 Harry Street");
         Tenant ten2 = new Tenant("Elise Rose", "123 Harry Street");
         Tenant ten3 = new Tenant("Madison Escalade", "123 Harry Street");
-        Tenant ten4 = new Tenant("Mike Rose", "123 Harry Street");
+
 
         Tenant ten5 = new Tenant("George Hyman", "419 Marla Avenue");
         Tenant ten6 = new Tenant("Ryan Bustman", "419 Marla Avenue");
@@ -166,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
         prop1.add(ten1);
         prop1.add(ten2);
         prop1.add(ten3);
-        prop1.add(ten4);
+
 
         ArrayList<Tenant> prop2 = new ArrayList<Tenant>();
         prop2.add(ten5);
