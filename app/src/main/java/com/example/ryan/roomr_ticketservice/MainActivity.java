@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
                 // Show the added item label
                 Toast.makeText(mContext, "Added : " + itemLabel, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+                startActivity(intent);
 
             }
         });
