@@ -11,6 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -108,11 +111,36 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
         /////////////////////////////////
         //RecyclerView recyclerView = (RecyclerView) this.findViewById(R.id.my_recycler_view);
 
         selectContractor = findViewById(R.id.btnSelectContractor);
         selectContractor.setOnClickListener(onSelectContractor);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.logout_menu, menu);
+
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.lblLogout:
+                Toast.makeText(mContext, "Logout", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+
+
     }
 
     private View.OnClickListener onTestNotification = new View.OnClickListener() {
