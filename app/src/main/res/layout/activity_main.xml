@@ -33,14 +33,31 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btnSelectContractor"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginBottom="8dp"
-        android:text="Report Problem"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:weightSum="2">
+        <Button
+            android:id="@+id/btnSelectContractor"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginBottom="8dp"
+            android:text="Report Problem"
+            android:visibility="visible"
+            android:layout_weight="1"
+             />
+        <Button
+            android:id="@+id/btnTestNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:text="Test Notification"
+            android:layout_weight="1"
+            android:layout_marginBottom="8dp"/>
+
+    </LinearLayout>
+
 
 
     <android.support.constraint.Barrier

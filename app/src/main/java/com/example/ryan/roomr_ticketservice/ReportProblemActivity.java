@@ -108,6 +108,7 @@ public class ReportProblemActivity extends AppCompatActivity {
             if (imageView.getDrawable() != null){
                 _ticket.set_image(_ticket.bitmapToString(imageView.getDrawable()));
             }
+
             JSONObject jsonObject = _ticket.createJson();
             if (jsonObject == null){
                 switch (_ticket.validateJSONValues()){
@@ -156,7 +157,7 @@ public class ReportProblemActivity extends AppCompatActivity {
 
             //initialize url
             URL url;
-            String urlString = "http://10.16.24.145:5000/";
+            String urlString = "http://10.16.26.173:5000/";
             try {
                 //create new url
                 url = new URL(urlString);

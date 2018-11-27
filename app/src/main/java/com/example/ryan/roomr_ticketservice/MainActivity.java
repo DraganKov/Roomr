@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Button selectContractor;
     Button openChat;
     ArrayList<House> propertyList;
-
+    Button testNotification;
     RecyclerItemClickListener openChatplz;
 
     @Override
@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        testNotification = findViewById(R.id.btnTestNotification);
+        testNotification.setOnClickListener(onTestNotification);
         mContext = getApplicationContext();
 
         // Change the action bar color
@@ -113,6 +114,15 @@ public class MainActivity extends AppCompatActivity {
         selectContractor = findViewById(R.id.btnSelectContractor);
         selectContractor.setOnClickListener(onSelectContractor);
     }
+
+    private View.OnClickListener onTestNotification = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, TestLandlordTicket.class);
+            startActivity(intent);
+        }
+    };
+
 
     private View.OnClickListener onSelectContractor = new View.OnClickListener() {
         @Override

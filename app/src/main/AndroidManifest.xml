@@ -8,7 +8,6 @@
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="Roomr"
-
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -22,7 +21,8 @@
         <activity
             android:name=".ChatActivity"
             android:label="Message Tenants"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".TestLandlordTicket"></activity>
     </application>
 
 </manifest>
