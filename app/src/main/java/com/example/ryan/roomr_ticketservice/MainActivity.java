@@ -137,10 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-
         }
-
-
     }
 
     private View.OnClickListener onTestNotification = new View.OnClickListener() {

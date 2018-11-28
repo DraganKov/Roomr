@@ -132,7 +132,7 @@ public class ReportProblemActivity extends AppCompatActivity {
                 ReportProblemActivity.NetworkHelperTask helper = new ReportProblemActivity.NetworkHelperTask();
                 helper.execute();
                 Intent intent = new Intent(ReportProblemActivity.this, MainActivity.class);
-                startActivity(intent);
+                //startActivity(intent);
             }
 
         }
@@ -157,7 +157,7 @@ public class ReportProblemActivity extends AppCompatActivity {
 
             //initialize url
             URL url;
-            String urlString = "http://10.16.26.173:5000/";
+            String urlString = "http://10.16.25.62:5000/";
             try {
                 //create new url
                 url = new URL(urlString);
