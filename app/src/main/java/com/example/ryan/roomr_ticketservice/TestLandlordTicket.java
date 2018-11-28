@@ -1,16 +1,19 @@
 package com.example.ryan.roomr_ticketservice;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,6 +31,8 @@ public class TestLandlordTicket extends AppCompatActivity implements LandlordTic
 
     Button testRequest;
     TextView textView;
+    ImageView problemImage;
+    TextView priority;
     LandlordTicketAdapter adapter;
     RecyclerView ticketView;
     ArrayList<String> contractorNames;
@@ -43,6 +48,8 @@ public class TestLandlordTicket extends AppCompatActivity implements LandlordTic
         testRequest = findViewById(R.id.btnTestRequest);
         textView = findViewById(R.id.textView);
         ticketView = findViewById(R.id.rcyTicketView);
+        problemImage = findViewById(R.id.imgTicket);
+        priority = findViewById(R.id.txtPriorityLandlord);
         testRequest.setOnClickListener(onTestRequest);
         contractorNames = new ArrayList<>();
         contractorPhoneNumbers = new ArrayList<>();
@@ -53,26 +60,33 @@ public class TestLandlordTicket extends AppCompatActivity implements LandlordTic
     }
 
 
-
-
     private void parseJSON() throws JSONException {
-        JSONObject json = new JSONObject(storeJSON.getValue());
-        contractorNames.add(json.get("Name1").toString());
-        contractorNames.add(json.get("Name2").toString());
-        contractorNames.add(json.get("Name3").toString());
-        contractorNames.add(json.get("Name4").toString());
-        //contractorNames.add(json.get("Name5").toString());
-        contractorPhoneNumbers.add(json.get("PhoneNumber1").toString());
-        contractorPhoneNumbers.add(json.get("PhoneNumber2").toString());
-        contractorPhoneNumbers.add(json.get("PhoneNumber3").toString());
-        contractorPhoneNumbers.add(json.get("PhoneNumber4").toString());
-        //contractorPhoneNumbers.add(json.get("PhoneNumber5").toString());
-        contractorRatings.add(json.get("Rating1").toString());
-        contractorRatings.add(json.get("Rating2").toString());
-        contractorRatings.add(json.get("Rating3").toString());
-        contractorRatings.add(json.get("Rating4").toString());
-        //contractorRatings.add(json.get("Rating5").toString());
-
+        JSONObject json = new JSONObject(StoreValue.getValue());
+        for (int i = 1; i <= 5; i++){
+            try{
+                contractorNames.add(json.get("Name" + Integer.toString(i)).toString());
+            }
+            catch (Exception ex){
+                //contractorNames.add("");
+                continue;
+            }
+            try{
+                contractorPhoneNumbers.add(json.get("PhoneNumber" + Integer.toString(i)).toString());
+            }
+            catch (Exception ex){
+                //contractorPhoneNumbers.add("");
+                continue;
+            }
+            try{
+                contractorRatings.add(json.get("Rating" + Integer.toString(i) ).toString());
+            }
+            catch (Exception ex){
+                //contractorRatings.add("0.0");
+                continue;
+            }
+        }
+        problemImage.setImageBitmap(convertStringToBitMap(json.get("Photo").toString()));
+        priority.setText(json.get("Priority").toString());
         textView.setText(json.get("Name1").toString() + "," + json.get("Rating1") + "," + json.get("PhoneNumber1"));
         ticketView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new LandlordTicketAdapter(this, contractorNames, contractorPhoneNumbers, contractorRatings);
@@ -82,7 +96,19 @@ public class TestLandlordTicket extends AppCompatActivity implements LandlordTic
 
     }
 
-
+    private Bitmap convertStringToBitMap(String string){
+        try{
+            //deccode string
+            byte[] bytes = Base64.decode(string, Base64.DEFAULT);
+            //covert byte array to bitmap
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            //return bitmap
+            return bitmap;
+        }catch (Exception ex){
+            ex.getMessage();
+            return null;
+        }
+    }
 
     private View.OnClickListener onTestRequest = new View.OnClickListener() {
         @Override
@@ -97,7 +123,7 @@ public class TestLandlordTicket extends AppCompatActivity implements LandlordTic
 
         @Override
         protected String doInBackground(Void... voids) {
-            onRequest("http://10.16.25.62:5000/");
+            onRequest(StoreValue.getIpAddress());
             return "";
         }
 
@@ -127,7 +153,7 @@ public class TestLandlordTicket extends AppCompatActivity implements LandlordTic
             @Override
             public void onResponse(String response) {
                 Toast.makeText(TestLandlordTicket.this, response, Toast.LENGTH_SHORT).show();
-                storeJSON.setValue(response);
+                StoreValue.setValue(response);
 
                 queue.stop();
 

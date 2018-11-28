@@ -48,10 +48,7 @@ public class MainActivity extends AppCompatActivity {
         testNotification.setOnClickListener(onTestNotification);
         mContext = getApplicationContext();
 
-        // Change the action bar color
-        getSupportActionBar().setBackgroundDrawable(
-                new ColorDrawable(Color.parseColor("#FFFF00BF"))
-        );
+       StoreValue.setIpAddress("http://10.16.27.151:5000/");
 
         // Get the widgets reference from XML layout
         //mRelativeLayout = (RelativeLayout) findViewById(R.id.);

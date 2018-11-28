@@ -157,10 +157,10 @@ public class ReportProblemActivity extends AppCompatActivity {
 
             //initialize url
             URL url;
-            String urlString = "http://10.16.25.62:5000/";
+
             try {
                 //create new url
-                url = new URL(urlString);
+                url = new URL(StoreValue.getIpAddress());
                 //open connection to url
                 URLConnection connection = url.openConnection();
                 //Make it an http connection
@@ -170,7 +170,7 @@ public class ReportProblemActivity extends AppCompatActivity {
                 //if response code == 200
                 if (responseCode == HttpURLConnection.HTTP_OK) {
                     //make the request
-                    onRequest(urlString);
+                    onRequest(StoreValue.getIpAddress());
                     //return because doInBackground returns a String
                     return "";
                     //if response is unsuccessful

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.security.KeyException;
 import java.util.List;
 
 public class LandlordTicketAdapter extends RecyclerView.Adapter<LandlordTicketAdapter.ViewHolder>{
@@ -36,18 +37,55 @@ public class LandlordTicketAdapter extends RecyclerView.Adapter<LandlordTicketAd
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String name = this.names.get(position);
-        String phoneNumber = this.phoneNumbers.get(position);
-        String rating = this.ratings.get(position);
+
+        String name;
+        String phoneNumber;
+        String rating;
+        try{
+            name = this.names.get(position);
+        }
+        catch (IndexOutOfBoundsException ex){
+            name = "";
+        }
+        try{
+            phoneNumber = this.phoneNumbers.get(position);
+
+        }
+        catch (IndexOutOfBoundsException ex){
+            phoneNumber = "";
+        }
+        try{
+            rating = this.ratings.get(position);
+        }
+        catch (IndexOutOfBoundsException ex){
+            rating = "0.0";
+        }
+
+
         holder.contractorNames.setText(name);
         holder.contractorPhoneNumbers.setText(phoneNumber);
         holder.onRatingChanged(holder.ratingBar, Float.parseFloat(rating), true);
+
+
     }
 
     // total number of rows
     @Override
     public int getItemCount() {
-        return 4;
+        int size1 = this.names.size();
+        int size2 = this.phoneNumbers.size();
+        int size3 = this.ratings.size();
+
+        int sizes[] = {size1, size2, size3};
+        int max = sizes[0];
+        for (int i = 0; i < sizes.length; i++){
+            if (sizes[i] > max){
+                max = sizes[i];
+            }
+        }
+        return max;
+
+
     }
 
     // stores and recycles views as they are scrolled off screen
@@ -71,8 +109,11 @@ public class LandlordTicketAdapter extends RecyclerView.Adapter<LandlordTicketAd
 
         @Override
         public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+            ratingBar.setMax(5);
+
             ratingBar.setRating(rating);
             ratingBar.setIsIndicator(fromUser);
+
         }
     }
 
