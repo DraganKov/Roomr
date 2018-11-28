@@ -94,6 +94,7 @@ public class TestLandlordTicket extends AppCompatActivity implements LandlordTic
         ticketView.setAdapter(adapter);
 
 
+
     }
 
     private Bitmap convertStringToBitMap(String string){
