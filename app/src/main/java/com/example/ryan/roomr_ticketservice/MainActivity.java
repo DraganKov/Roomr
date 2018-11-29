@@ -94,17 +94,29 @@ public class MainActivity extends AppCompatActivity {
         final String[] myDataset = {
                 "123 Harry Street",
                 "419 Marla Avenue",
-                "667 Sarah Crescent"
+                "667 Sarah Crescent",
+                "1440 Sixth Line Unit #4",
+                "340 Marlborough Court Unit #212"
         };
         final String[] myNameset = {
                 "Mike Rose",
                 "Elise Rose",
-                "Madison Escalade"
+                "Madison Escalade",
+                "Alison Grace",
+                "Johnny Walker"
+        };
+        final String[] myImgSet = {
+                "http://www.wallmark.ca/assets/bulkUpload/_resampled/ResizeCroppedImage480296-IMG-0002.jpg",
+                "https://www.brolenhomes.com.au/wp-content/uploads/2017/12/Custom2-Facade-720x440-250x153.jpg",
+                "https://lequebec.info/images/property/25549404_1.jpg",
+                "http://www.southamptonbeachhouse.ca/images/slider-img-03.jpg",
+                "https://images.glaciermedia.ca/polopoly_fs/1.383964.1373149983!/fileImage/httpImage/image.jpg_gen/derivatives/landscape_804_583/img-0-7465939-jpg.jpg"
         };
 
         // Intilize an array list from array
         final List<String> addressList = new ArrayList(Arrays.asList(myDataset));
         final List<String> nameList = new ArrayList(Arrays.asList(myNameset));
+        final List<String> imgList = new ArrayList(Arrays.asList(myImgSet));
 
         // Define a layout for RecyclerView
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -112,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Initialize a new instance of RecyclerView Adapter instance
-        mAdapter = new myAdapter(mContext, addressList, nameList);
+        mAdapter = new myAdapter(mContext, addressList, nameList, imgList);
 
         // Set the adapter for RecyclerView
         mRecyclerView.setAdapter(mAdapter);
@@ -166,6 +178,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.lblLogout:
                 Toast.makeText(mContext, "Logout", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -254,13 +268,13 @@ public class MainActivity extends AppCompatActivity {
         prop3.add(ten9);
 
 
-        House harry123 = new House("123 Harry Street", prop1);
-        House marla419 = new House("419 Marla Avenue", prop2);
-        House sarah667 = new House("667 Sarah Crescent", prop3);
+        //House harry123 = new House("123 Harry Street", prop1);
+        //House marla419 = new House("419 Marla Avenue", prop2);
+        //House sarah667 = new House("667 Sarah Crescent", prop3);
 
-        propertyList.add(harry123);
-        propertyList.add(marla419);
-        propertyList.add(sarah667);
+        //propertyList.add(harry123);
+        //propertyList.add(marla419);
+        //propertyList.add(sarah667);
 
 
     }
