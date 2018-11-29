@@ -19,7 +19,7 @@
         tools:ignore="MissingConstraints"
         tools:itemCount="8"
         tools:layout_editor_absoluteX="0dp"
-        tools:listitem="@layout/recycler_view_item_1" />
+        tools:listitem="@layout/recycler_view_item_properties" />
 
     <Button
         android:id="@+id/btnOpenChat"

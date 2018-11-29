@@ -33,7 +33,6 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder>  {
         public TextView mTextView;
         public TextView mTextView2;
         public ImageButton mRemoveButton;
-        public ImageView mImageView;
         public ImageView mHouseView;
 
 
@@ -42,7 +41,6 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder>  {
             mTextView = (TextView) v.findViewById(R.id.textAddress);
             mTextView2 = (TextView) v.findViewById(R.id.textTenants);
             mRemoveButton = (ImageButton) v.findViewById(R.id.removebtn);
-            mImageView = (ImageView) v.findViewById(R.id.crossButton);
            mHouseView = (ImageView) v.findViewById(R.id.imgHouse);
         }
     }
@@ -50,7 +48,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder>  {
     @Override
     public myAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         // Create a new View
-        View v = LayoutInflater.from(mContext).inflate(R.layout.recycler_view_item_1,parent,false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.recycler_view_item_properties,parent,false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
