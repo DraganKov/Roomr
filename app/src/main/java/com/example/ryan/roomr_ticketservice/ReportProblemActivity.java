@@ -134,6 +134,7 @@ public class ReportProblemActivity extends AppCompatActivity {
                 Intent intent = new Intent(ReportProblemActivity.this, MainActivity.class);
                 startActivity(intent);
 
+
             }
 
         }
