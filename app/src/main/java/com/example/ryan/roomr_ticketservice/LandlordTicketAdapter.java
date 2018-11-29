@@ -72,6 +72,7 @@ public class LandlordTicketAdapter extends RecyclerView.Adapter<LandlordTicketAd
     // total number of rows
     @Override
     public int getItemCount() {
+
         int size1 = this.names.size();
         int size2 = this.phoneNumbers.size();
         int size3 = this.ratings.size();

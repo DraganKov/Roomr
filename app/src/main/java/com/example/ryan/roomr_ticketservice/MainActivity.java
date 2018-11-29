@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Button selectContractor;
     Button openChat;
     ArrayList<House> propertyList;
-    Button testNotification;
+
     RecyclerItemClickListener openChatplz;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_notifications:
                     //mTextMessage.setText(R.string.title_notifications);
-                    intent = new Intent(MainActivity.this, TestLandlordTicket.class);
+                    intent = new Intent(MainActivity.this, NotificationActivity.class);
                     startActivity(intent);
                     return true;
             }
@@ -72,8 +72,7 @@ public class MainActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       // testNotification = findViewById(R.id.btnTestNotification);
-        //testNotification.setOnClickListener(onTestNotification);
+
         mContext = getApplicationContext();
 
         mTextMessage = (TextView) findViewById(R.id.message);
@@ -85,7 +84,11 @@ public class MainActivity extends AppCompatActivity {
         // Get the widgets reference from XML layout
         //mRelativeLayout = (RelativeLayout) findViewById(R.id.);
         //openChat = (Button) findViewById(R.id.btnOpenChat);
-        //selectContractor = (Button) findViewById(R.id.btnSelectContractor);
+
+
+
+        selectContractor = findViewById(R.id.btnSelectContractor);
+        selectContractor.setOnClickListener(onSelectContractor);
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         final String[] myDataset = {

@@ -32,7 +32,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivityTenant"
-            android:label="RoomR"></activity>
+            android:label="RoomR" />
+        <activity android:name=".NotificationActivity"></activity>
     </application>
 
 </manifest>
