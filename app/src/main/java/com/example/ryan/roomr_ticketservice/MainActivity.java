@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private Context mContext;
     RelativeLayout mRelativeLayout;
     private RecyclerView mRecyclerView;
-    private myAdapter mAdapter;
+    private PropertyRecyclerAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private TextView mTextMessage;
 
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Initialize a new instance of RecyclerView Adapter instance
-        mAdapter = new myAdapter(mContext, addressList, nameList, imgList);
+        mAdapter = new PropertyRecyclerAdapter(mContext, addressList, nameList, imgList);
 
         // Set the adapter for RecyclerView
         mRecyclerView.setAdapter(mAdapter);

@@ -15,14 +15,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder>  {
+public class PropertyRecyclerAdapter extends RecyclerView.Adapter<PropertyRecyclerAdapter.ViewHolder>  {
     private List<String> mAddressSet;
     private List<String> mTenantSet;
     private List<String> mImgSet;
     public Context mContext;
 
 
-    public myAdapter(Context context, List<String> addresses, List<String> names, List<String> imgHouses){
+    public PropertyRecyclerAdapter(Context context, List<String> addresses, List<String> names, List<String> imgHouses){
         mAddressSet = addresses;
         mTenantSet = names;
         mImgSet = imgHouses;
@@ -46,7 +46,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder>  {
     }
 
     @Override
-    public myAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public PropertyRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         // Create a new View
         View v = LayoutInflater.from(mContext).inflate(R.layout.recycler_view_item_properties,parent,false);
         ViewHolder vh = new ViewHolder(v);

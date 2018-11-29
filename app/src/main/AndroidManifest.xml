@@ -40,9 +40,9 @@
             android:label="RoomR" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
-            android:label="RoomR" />
-        <activity android:name=".NotificationActivity"></activity>
+            android:label="@string/title_activity_login" />
+        android:label="RoomR" />
+        <activity android:name=".NotificationActivity" />
     </application>
 
 </manifest>
