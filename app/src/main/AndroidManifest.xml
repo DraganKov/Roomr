@@ -10,20 +10,29 @@
         android:label="Roomr"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ReportProblemActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ReportProblemActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ChatActivity"
-            android:screenOrientation="portrait"
             android:label="Message Tenants"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TestLandlordTicket" android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".TestLandlordTicket"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivityTenant"
+            android:label="RoomR"></activity>
     </application>
 
 </manifest>

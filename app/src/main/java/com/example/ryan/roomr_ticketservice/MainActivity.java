@@ -4,16 +4,15 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -32,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private myAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private TextView mTextMessage;
 
     Button selectContractor;
     Button openChat;
@@ -39,21 +39,53 @@ public class MainActivity extends AppCompatActivity {
     Button testNotification;
     RecyclerItemClickListener openChatplz;
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(MenuItem item) {
+            Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+            switch (item.getItemId()) {
+
+                case R.id.navigation_home:
+                    //mTextMessage.setText(R.string.title_home);
+                    intent = new Intent(MainActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.navigation_dashboard:
+                    //mTextMessage.setText(R.string.title_dashboard);
+                    intent = new Intent(MainActivity.this, ChatActivity.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.navigation_notifications:
+                    //mTextMessage.setText(R.string.title_notifications);
+                    intent = new Intent(MainActivity.this, TestLandlordTicket.class);
+                    startActivity(intent);
+                    return true;
+            }
+            return false;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        testNotification = findViewById(R.id.btnTestNotification);
-        testNotification.setOnClickListener(onTestNotification);
+       // testNotification = findViewById(R.id.btnTestNotification);
+        //testNotification.setOnClickListener(onTestNotification);
         mContext = getApplicationContext();
+
+        mTextMessage = (TextView) findViewById(R.id.message);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
        StoreValue.setIpAddress("http://10.16.27.151:5000/");
 
         // Get the widgets reference from XML layout
         //mRelativeLayout = (RelativeLayout) findViewById(R.id.);
-        openChat = (Button) findViewById(R.id.btnOpenChat);
-        selectContractor = (Button) findViewById(R.id.btnSelectContractor);
+        //openChat = (Button) findViewById(R.id.btnOpenChat);
+        //selectContractor = (Button) findViewById(R.id.btnSelectContractor);
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         final String[] myDataset = {
@@ -83,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         // Set a click listener for add item button
-        openChat.setOnClickListener(new View.OnClickListener() {
+        /*openChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Specify the position
@@ -105,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
-        });
+        });*/
 
 
 
@@ -113,8 +145,8 @@ public class MainActivity extends AppCompatActivity {
         /////////////////////////////////
         //RecyclerView recyclerView = (RecyclerView) this.findViewById(R.id.my_recycler_view);
 
-        selectContractor = findViewById(R.id.btnSelectContractor);
-        selectContractor.setOnClickListener(onSelectContractor);
+        //selectContractor = findViewById(R.id.btnSelectContractor);
+        //selectContractor.setOnClickListener(onSelectContractor);
     }
 
     @Override
@@ -178,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         contractorName = "";
                 }
+
                 Intent intent = new Intent(MainActivity.this, ReportProblemActivity.class);
                 intent.putExtra("NAME", contractorName);
                 startActivity(intent);
@@ -228,26 +261,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-        //openChat = findViewById(R.id.btnOpenChat);
-        //openChat.setOnClickListener(onOpenChat);
-
-
-        // Construct the data source
-        //createTestTenants();
-
-
-
-
-
-            /*private View.OnClickListener onOpenChat = new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, ChatActivity.class);
-                    startActivity(intent);
-                }
-            };*/
-
-
 
 /////////////////////////////////fin///////////////////////////
 }
