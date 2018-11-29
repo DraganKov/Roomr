@@ -133,6 +133,7 @@ public class ReportProblemActivity extends AppCompatActivity {
                 helper.execute();
                 Intent intent = new Intent(ReportProblemActivity.this, MainActivity.class);
                 startActivity(intent);
+
             }
 
         }
