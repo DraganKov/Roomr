@@ -91,12 +91,16 @@ public class MainActivity extends AppCompatActivity {
         final String[] myDataset = {
                 "123 Harry Street",
                 "419 Marla Avenue",
-                "667 Sarah Crescent"
+                "667 Sarah Crescent",
+                "1440 Sixth Line Unit #4",
+                "340 Marlborough Court Unit #212"
         };
         final String[] myNameset = {
                 "Mike Rose",
                 "Elise Rose",
-                "Madison Escalade"
+                "Madison Escalade",
+                "Alison Grace",
+                "Johnny Walker"
         };
 
         // Intilize an array list from array
@@ -163,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.lblLogout:
                 Toast.makeText(mContext, "Logout", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
