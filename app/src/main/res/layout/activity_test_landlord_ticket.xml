@@ -28,7 +28,7 @@
         app:layout_constraintBottom_toTopOf="@+id/rcyTicketView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imgTicket" />
 
 
     <android.support.v7.widget.RecyclerView
