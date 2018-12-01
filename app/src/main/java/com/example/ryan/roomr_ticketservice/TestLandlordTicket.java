@@ -31,7 +31,7 @@ public class TestLandlordTicket extends AppCompatActivity implements LandlordTic
 
 
 
-    TextView textView;
+
     ArrayList<String> names;
     ArrayList<String> phoneNumbers;
     ArrayList<String> ratings;
@@ -55,14 +55,7 @@ public class TestLandlordTicket extends AppCompatActivity implements LandlordTic
         adapter.setClickListener(this);
         ticketView.setAdapter(adapter);
 
-
-
-
     }
-
-
-
-
 
 
     @Override

@@ -1,7 +1,16 @@
 package com.example.ryan.roomr_ticketservice;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -90,10 +99,33 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
 
 
     private View.OnClickListener onTestRequest = new View.OnClickListener() {
+
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onClick(View v) {
-            NotificationActivity.NetworkHelperTask helperTask = new NotificationActivity.NetworkHelperTask();
-            helperTask.execute();
+
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            CharSequence name = "TEST";
+            String description = "Hello World";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("001", name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            notificationManager.createNotificationChannel(channel);
+
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(NotificationActivity.this, "001")
+                    .setSmallIcon(R.drawable.circle)
+                    .setContentTitle("Repair Requested")
+                    .setContentText(".")
+                    .setStyle(new NotificationCompat.BigTextStyle()
+                            .bigText("Much longer text that cannot fit one line..."))
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+
+            notificationManager.notify(001, mBuilder.build());
+            //NotificationActivity.NetworkHelperTask helperTask = new NotificationActivity.NetworkHelperTask();
+            //helperTask.execute();
 
 
         }
