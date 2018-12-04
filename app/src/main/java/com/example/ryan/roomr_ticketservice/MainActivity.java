@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
-            Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+            Intent intent;
             switch (item.getItemId()) {
 
                 case R.id.navigation_home:
@@ -99,9 +99,9 @@ public class MainActivity extends AppCompatActivity {
                 "340 Marlborough Court Unit #212"
         };
         final String[] myNameset = {
-                "Mike Rose",
-                "Elise Rose",
-                "Madison Escalade",
+                "Mike Rose, Elise Rose",
+                "Rodrigo Hurtado",
+                "Ryan Sneyd",
                 "Alison Grace",
                 "Johnny Walker"
         };

@@ -12,7 +12,7 @@
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="Roomr"
+        android:label="RoomR"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -40,7 +40,7 @@
             android:label="RoomR" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="Sign into RoomR" />
         android:label="RoomR" />
         <activity android:name=".NotificationActivity" />
     </application>

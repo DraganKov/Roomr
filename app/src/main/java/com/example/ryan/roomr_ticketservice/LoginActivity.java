@@ -49,9 +49,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
+    private static String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world",
-            "ryan@roomr.com:bellsprout", "dragan@roomr.com:kong"
+            "ryan@roomr.com:bellsprout", "dragan@roomr.com:donkeykong"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -326,6 +326,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
 
             // TODO: register the new account here.
+            DUMMY_CREDENTIALS = new String[]{
+                    "ryan@roomr.com:bellsprout", "dragan@roomr.com:donkeykong",
+                    mEmailView.getText()+":"+mPasswordView.getText()
+            };
             return true;
         }
 
@@ -334,10 +338,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
 
+
             if (success) {
-                Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(i);
-                finish();
+                if(mEmail.equals("ryan@roomr.com")){
+                    //tenant login
+                    Intent i = new Intent(LoginActivity.this, MainActivityTenant.class);
+                    startActivity(i);
+                    finish();
+                }
+                else{
+                    //landlord login
+                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+
+
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
@@ -349,6 +365,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
         }
+
+
     }
 }
 

@@ -1,5 +1,6 @@
 package com.example.ryan.roomr_ticketservice;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,7 +31,15 @@ public class ChatActivity extends AppCompatActivity implements RoomListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        Intent i = getIntent();
+        Boolean t = false;
+        Boolean intentData = i.getBooleanExtra("isTenant", t);
+
+        if(intentData){
+            setContentView(R.layout.activity_chat);
+        }
+        else{ setContentView(R.layout.content_activity_chat); }
+
 
         editText = (EditText) findViewById(R.id.editText);
 
@@ -75,7 +84,7 @@ public class ChatActivity extends AppCompatActivity implements RoomListener {
 
     @Override
     public void onOpen(Room room) {
-        System.out.println("Conneted to room");
+        System.out.println("Connected to RoomR Chat");
     }
 
     @Override

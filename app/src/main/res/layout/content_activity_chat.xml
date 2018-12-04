@@ -43,4 +43,5 @@
             android:padding="20dp"
             android:scaleType="fitCenter" />
     </LinearLayout>
+
 </LinearLayout>
