@@ -124,8 +124,8 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
 
 
             notificationManager.notify(001, mBuilder.build());
-            //NotificationActivity.NetworkHelperTask helperTask = new NotificationActivity.NetworkHelperTask();
-            //helperTask.execute();
+            NotificationActivity.NetworkHelperTask helperTask = new NotificationActivity.NetworkHelperTask();
+            helperTask.execute();
 
 
         }
