@@ -23,13 +23,15 @@ import java.util.Random;
 public class ChatActivity extends AppCompatActivity implements RoomListener {
 
     // replace this with a real channelID from Scaledrone dashboard
-    private String channelID = "4lmrrOD8Ll2SkO2A";
+
+    private String channelID;
     private String roomName = "observable-room1";
     private EditText editText;
     private Scaledrone scaledrone;
     private MessageAdapter messageAdapter;
     private ListView messagesView;
     private Button ten1, ten2, ten3;
+    private String tenantName, landlordName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,38 +39,47 @@ public class ChatActivity extends AppCompatActivity implements RoomListener {
         Intent i = getIntent();
         Boolean t = false;
         Boolean intentData = i.getBooleanExtra("isTenant", t);
+        channelID =  i.getStringExtra("channel");
+
 
         if(intentData){
             setContentView(R.layout.content_activity_chat);
+            tenantName = i.getStringExtra("tenantName");
+            initChat(tenantName);
         }
-        else{ setContentView(R.layout.activity_chat); }
-
-        ten1 = findViewById(R.id.tenant1);
-        ten2 = findViewById(R.id.tenant2);
-        ten3 = findViewById(R.id.tenant3);
-
-        ten1.setText("667 Sarah Crescent");
-        ten2.setText("Ryan Sneyd");
-        ten3.setText("Rodrigo Hurtado");
-
-        ten2.setOnClickListener(onSelectTenant2);
-        ten1.setOnClickListener(onSelectTenant1);
+        else{
+            setContentView(R.layout.activity_chat);
+            landlordName = i.getStringExtra("landlordName");
+            ten1 = findViewById(R.id.tenant1);
+            ten2 = findViewById(R.id.tenant2);
 
 
+            ten1.setText("667 Sarah Crescent");
+            ten2.setText("Ryan Sneyd");
 
+
+            ten2.setOnClickListener(onSelectTenant2);
+            ten1.setOnClickListener(onSelectTenant1);
+
+            initChat(landlordName);
+        }
+
+    }
+    public void initChat(String name){
         editText = (EditText) findViewById(R.id.editText);
 
         messageAdapter = new MessageAdapter(this);
         messagesView = (ListView) findViewById(R.id.messages_view);
         messagesView.setAdapter(messageAdapter);
 
-        MemberData data = new MemberData(getRandomName(), getRandomColor());
+        MemberData data = new MemberData(name, getRandomColor());
 
         scaledrone = new Scaledrone(channelID, data);
         scaledrone.connect(new Listener() {
             @Override
             public void onOpen() {
                 System.out.println("Scaledrone connection open");
+                System.out.println(channelID);
                 scaledrone.subscribe(roomName, ChatActivity.this);
             }
 
@@ -88,7 +99,6 @@ public class ChatActivity extends AppCompatActivity implements RoomListener {
             }
         });
     }
-
     public void sendMessage(View view) {
         String message = editText.getText().toString();
         if (message.length() > 0) {
@@ -127,13 +137,9 @@ public class ChatActivity extends AppCompatActivity implements RoomListener {
     }
 
     private String getRandomName() {
-        String[] adjs = {"Ryan"};
-        String[] nouns = {"Sneyd"};
-        return (
-                adjs[(int) Math.floor(Math.random() * adjs.length)] +
-                        "_" +
-                        nouns[(int) Math.floor(Math.random() * nouns.length)]
-        );
+
+
+        return tenantName;
     }
 
     //when a tenant is clicked
@@ -141,9 +147,7 @@ public class ChatActivity extends AppCompatActivity implements RoomListener {
         @Override
         public void onClick(View v) {
             Intent i = getIntent();
-
-
-            channelID = "4lmrrOD8Ll2SkO2A";
+            i.putExtra("channel","4lmrrOD8Ll2SkO2A");
 
             startActivity(i);
 
@@ -155,8 +159,7 @@ public class ChatActivity extends AppCompatActivity implements RoomListener {
         public void onClick(View v) {
             Intent i = getIntent();
 
-
-            channelID = "FGcdTGfNcZHXPRIA";
+            i.putExtra("channel","FGcdTGfNcZHXPRIA");
 
             startActivity(i);
 

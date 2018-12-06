@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_dashboard:
                     //mTextMessage.setText(R.string.title_dashboard);
                     intent = new Intent(MainActivity.this, ChatActivity.class);
+                    intent.putExtra("channel", "4lmrrOD8Ll2SkO2A");
+                    intent.putExtra("landlordName", "Dragan Kovacevic");
                     startActivity(intent);
                     return true;
                 case R.id.navigation_notifications:

@@ -27,6 +27,8 @@ public class MainActivityTenant extends AppCompatActivity {
                     intent = new Intent(MainActivityTenant.this, ChatActivity.class);
                     boolean t = Boolean.parseBoolean("True");
                     intent.putExtra("isTenant", t);
+                    intent.putExtra("channel", "FGcdTGfNcZHXPRIA");
+                    intent.putExtra("tenantName", "Ryan Sneyd");
                     //intent.putExtra("isTenant", "True");
 
                     startActivity(intent);
