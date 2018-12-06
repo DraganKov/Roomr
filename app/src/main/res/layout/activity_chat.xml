@@ -12,22 +12,44 @@
         android:id="@+id/include"
         layout="@layout/content_activity_chat"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/nestedScrollView"/>
+        android:layout_height="634dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nestedScrollView" />
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="80dp">
+     <LinearLayout
+         android:id="@+id/nestedScrollView"
+         android:layout_width="match_parent"
+         android:layout_height="80dp"
+         android:orientation="horizontal"
+         >
 
-        <Button
-            android:id="@+id/landlordMsg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Landlord" />
-
-
-    </android.support.v4.widget.NestedScrollView>
+         <Button
+             android:id="@+id/tenant1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Mike Rose" />
+         <Button
+             android:id="@+id/tenant2"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Ryan Sneyd"/>
+         <Button
+             android:id="@+id/tenant3"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Rodrigo Hurtado"/>
+         <Button
+             android:id="@+id/tenant4"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="ten4"/>
+         <Button
+             android:id="@+id/tenant5"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="ten5"/>
+     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
 

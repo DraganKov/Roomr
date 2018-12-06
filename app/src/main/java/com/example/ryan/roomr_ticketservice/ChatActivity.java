@@ -1,9 +1,11 @@
 package com.example.ryan.roomr_ticketservice;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -27,6 +29,7 @@ public class ChatActivity extends AppCompatActivity implements RoomListener {
     private Scaledrone scaledrone;
     private MessageAdapter messageAdapter;
     private ListView messagesView;
+    private Button ten1, ten2, ten3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +39,20 @@ public class ChatActivity extends AppCompatActivity implements RoomListener {
         Boolean intentData = i.getBooleanExtra("isTenant", t);
 
         if(intentData){
-            setContentView(R.layout.activity_chat);
+            setContentView(R.layout.content_activity_chat);
         }
-        else{ setContentView(R.layout.content_activity_chat); }
+        else{ setContentView(R.layout.activity_chat); }
+
+        ten1 = findViewById(R.id.tenant1);
+        ten2 = findViewById(R.id.tenant2);
+        ten3 = findViewById(R.id.tenant3);
+
+        ten1.setText("Mike Rose");
+        ten2.setText("Ryan Sneyd");
+        ten3.setText("Rodrigo Hurtado");
+
+        ten2.setOnClickListener(onSelectTenant);
+
 
 
         editText = (EditText) findViewById(R.id.editText);
@@ -121,6 +135,17 @@ public class ChatActivity extends AppCompatActivity implements RoomListener {
         );
     }
 
+    //when a tenant is clicked
+    private View.OnClickListener onSelectTenant = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent i = getIntent();
+            channelID = "FGcdTGfNcZHXPRIA";
+
+            startActivity(i);
+        }
+    };
+
     private String getRandomColor() {
         Random r = new Random();
         StringBuffer sb = new StringBuffer("#");
@@ -158,4 +183,5 @@ class MemberData {
                 ", color='" + color + '\'' +
                 '}';
     }
+
 }
