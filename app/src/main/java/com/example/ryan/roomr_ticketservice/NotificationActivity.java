@@ -124,6 +124,7 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
         startActivity(intent);
 
 
+
     }
 
     private class NetworkHelperTask extends AsyncTask<Void, Void, String> {
