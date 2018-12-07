@@ -12,7 +12,7 @@
         android:id="@+id/include"
         layout="@layout/content_activity_chat"
         android:layout_width="match_parent"
-        android:layout_height="634dp"
+        android:layout_height="608dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nestedScrollView" />
@@ -28,27 +28,13 @@
              android:id="@+id/tenant1"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="Mike Rose" />
+             android:text="Null" />
          <Button
              android:id="@+id/tenant2"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:text="Ryan Sneyd"/>
-         <Button
-             android:id="@+id/tenant3"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="Rodrigo Hurtado"/>
-         <Button
-             android:id="@+id/tenant4"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="ten4"/>
-         <Button
-             android:id="@+id/tenant5"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="ten5"/>
+
      </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
