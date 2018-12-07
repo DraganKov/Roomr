@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-       StoreValue.setIpAddress("http://10.16.27.151:5000/");
+       StoreValue.setIpAddress("http://10.16.27.169:5000/");
 
         // Get the widgets reference from XML layout
         //mRelativeLayout = (RelativeLayout) findViewById(R.id.);
