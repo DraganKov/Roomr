@@ -102,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
         };
         final String[] myNameset = {
                 "Mike Rose, Elise Rose",
-                "Rodrigo Hurtado",
                 "Ryan Sneyd",
+                "Rodrigo Hurtado",
                 "Alison Grace",
                 "Johnny Walker"
         };
