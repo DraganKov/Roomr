@@ -1,8 +1,6 @@
 package com.example.ryan.roomr_ticketservice;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -16,7 +14,6 @@ import android.widget.TextView;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,12 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private PropertyRecyclerAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private TextView mTextMessage;
-
-    Button selectContractor;
-    Button openChat;
-    ArrayList<House> propertyList;
-
-    RecyclerItemClickListener openChatplz;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -75,23 +66,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mContext = getApplicationContext();
-
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
        StoreValue.setIpAddress("http://10.16.27.169:5000/");
 
-        // Get the widgets reference from XML layout
-        //mRelativeLayout = (RelativeLayout) findViewById(R.id.);
-        //openChat = (Button) findViewById(R.id.btnOpenChat);
-
-
-
-        //selectContractor = findViewById(R.id.btnSelectContractor);
-        //selectContractor.setOnClickListener(onSelectContractor);
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-
+       //data that appears on the main view
         final String[] myDataset = {
                 "123 Harry Street",
                 "419 Marla Avenue",
@@ -144,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.lblEditProperty:
+            case R.id.lblEdit:
                 Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
                 //Intent i = new Intent(MainActivity.this, LoginActivity.class);
                 //startActivity(i);
