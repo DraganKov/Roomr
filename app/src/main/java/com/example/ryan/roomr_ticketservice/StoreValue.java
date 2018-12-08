@@ -5,6 +5,8 @@ class StoreValue {
     private static String ipAddress = "";
 
     public static void setValue(String v){
+
+
         value = v;
     }
 

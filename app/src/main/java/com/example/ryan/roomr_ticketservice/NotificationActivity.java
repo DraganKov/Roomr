@@ -30,6 +30,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class NotificationActivity extends AppCompatActivity implements NotificationRecycleviewAdapter.ItemClickListener{
 
@@ -39,13 +41,13 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
     LandlordTicket ticket;
     ArrayList<LandlordTicket> notification;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         notification = new ArrayList<>();
         ticket = new LandlordTicket();
-
         // set up the RecyclerView
 
         notificationList = findViewById(R.id.rcyNotifications);
@@ -55,9 +57,14 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
 
 
 
+
+
     }
-    private void parseJson() throws JSONException {
-        JSONObject json = new JSONObject(StoreValue.getValue());
+
+
+
+    private void parseJson(String response) throws JSONException {
+        JSONObject json = new JSONObject(response);
 
         ticket.setPhotoString(json.get("Photo").toString());
         ticket.setDescription(json.get("Description").toString());
@@ -96,40 +103,15 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
     }
 
 
-
-
     private View.OnClickListener onTestRequest = new View.OnClickListener() {
-
-        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onClick(View v) {
-
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            CharSequence name = "TEST";
-            String description = "Hello World";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("001", name, importance);
-            channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            notificationManager.createNotificationChannel(channel);
-
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(NotificationActivity.this, "001")
-                    .setSmallIcon(R.drawable.circle)
-                    .setContentTitle("Repair Requested")
-                    .setContentText(".")
-                    .setStyle(new NotificationCompat.BigTextStyle()
-                            .bigText("Much longer text that cannot fit one line..."))
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-
-            notificationManager.notify(001, mBuilder.build());
-            //NotificationActivity.NetworkHelperTask helperTask = new NotificationActivity.NetworkHelperTask();
-            //helperTask.execute();
-
-
+            NetworkHelperTask thread = new NetworkHelperTask();
+            thread.execute();
         }
     };
+
+
 
     @Override
     public void onItemClick(View view, int position) {
@@ -138,7 +120,10 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
         intent.putStringArrayListExtra("NAMES", ticket.getNames());
         intent.putStringArrayListExtra("PHONE", ticket.getPhoneNumbers());
         intent.putStringArrayListExtra("RATING", ticket.getRatings());
+        intent.putExtra("CONTRACTOR", ticket.getName());
         startActivity(intent);
+
+
 
     }
 
@@ -151,34 +136,26 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
             return "";
         }
 
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            try {
-                parseJson();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
-
-        }
     }
 
     private void onRequest(String url) {
 
         final RequestQueue queue = Volley.newRequestQueue(this);
 
-
-
-
-
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url + "ticket", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //Toast.makeText(NotificationActivity.this, response, Toast.LENGTH_SHORT).show();
-                StoreValue.setValue(response);
+                if (!response.equals(StoreValue.getValue())){
+                    try {
+                        parseJson(response);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
 
+                StoreValue.setValue(response);
                 queue.stop();
 
             }
@@ -186,6 +163,7 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(NotificationActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
                 queue.stop();
             }
         });
