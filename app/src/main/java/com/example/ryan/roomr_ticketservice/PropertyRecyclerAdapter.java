@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ public class PropertyRecyclerAdapter extends RecyclerView.Adapter<PropertyRecycl
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView mTextView;
         public TextView mTextView2;
-        public ImageButton mRemoveButton;
+        public Button mRemoveButton;
         public ImageView mHouseView;
 
 
@@ -41,7 +42,7 @@ public class PropertyRecyclerAdapter extends RecyclerView.Adapter<PropertyRecycl
             super(v);
             mTextView = (TextView) v.findViewById(R.id.textAddress);
             mTextView2 = (TextView) v.findViewById(R.id.textTenants);
-            mRemoveButton = (ImageButton) v.findViewById(R.id.removebtn);
+            mRemoveButton = (Button) v.findViewById(R.id.removebtn);
            mHouseView = (ImageView) v.findViewById(R.id.imgHouse);
         }
     }

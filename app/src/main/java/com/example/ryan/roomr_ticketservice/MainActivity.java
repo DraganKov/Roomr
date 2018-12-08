@@ -27,7 +27,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private Context mContext;
-    RelativeLayout mRelativeLayout;
     private RecyclerView mRecyclerView;
     private PropertyRecyclerAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -89,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        selectContractor = findViewById(R.id.btnSelectContractor);
-        selectContractor.setOnClickListener(onSelectContractor);
+        //selectContractor = findViewById(R.id.btnSelectContractor);
+        //selectContractor.setOnClickListener(onSelectContractor);
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         final String[] myDataset = {
@@ -131,39 +130,6 @@ public class MainActivity extends AppCompatActivity {
         // Set the adapter for RecyclerView
         mRecyclerView.setAdapter(mAdapter);
 
-        // Set a click listener for add item button
-        /*openChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Specify the position
-                int position = 3;
-                String itemLabel = "testing";
-
-                // Add an item to animals list
-                addressList.add(position, "" + itemLabel);
-
-
-                // Notify the adapter that an item inserted
-                mAdapter.notifyItemInserted(position);
-
-                // Scroll to newly added item position
-                mRecyclerView.scrollToPosition(position);
-
-                // Show the added item label
-                Toast.makeText(mContext, "Added : " + itemLabel, Toast.LENGTH_SHORT).show();
-
-
-            }
-        });*/
-
-
-
-
-        /////////////////////////////////
-        //RecyclerView recyclerView = (RecyclerView) this.findViewById(R.id.my_recycler_view);
-
-        //selectContractor = findViewById(R.id.btnSelectContractor);
-        //selectContractor.setOnClickListener(onSelectContractor);
     }
 
     @Override
@@ -178,6 +144,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case R.id.lblEditProperty:
+                Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
+                //Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                //startActivity(i);
+                return true;
             case R.id.lblLogout:
                 Toast.makeText(mContext, "Logout", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(MainActivity.this, LoginActivity.class);
@@ -197,47 +168,6 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
-    private View.OnClickListener onSelectContractor = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            final AlertDialog dialog = buildDialog();
-            dialog.show();
-        }
-    };
-
-    private AlertDialog buildDialog () {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("Pick a Contractor");
-        builder.setItems(R.array.names, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String contractorName;
-                switch (which) {
-                    case 0:
-                        contractorName = "Electrician";
-                        break;
-                    case 1:
-                        contractorName = "Dry Wall Repair";
-                        break;
-                    case 2:
-                        contractorName = "Plumbing";
-                        break;
-                    case 3:
-                        contractorName = "Locksmith";
-                        break;
-                    default:
-                        contractorName = "";
-                }
-
-                Intent intent = new Intent(MainActivity.this, ReportProblemActivity.class);
-                intent.putExtra("NAME", contractorName);
-                startActivity(intent);
-            }
-
-        });
-        return builder.create();
-    }
 
     //replace this with an actual database fetch for tenants based on Landlords Properties
     private void createTestTenants () {
