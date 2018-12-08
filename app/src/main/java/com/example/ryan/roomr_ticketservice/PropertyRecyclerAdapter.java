@@ -82,9 +82,13 @@ public class PropertyRecyclerAdapter extends RecyclerView.Adapter<PropertyRecycl
                 String itemLabel = mAddressSet.get(position);
                 // Remove the item on remove/button click
                 mAddressSet.remove(position);
+                mTenantSet.remove(position);
+                mImgSet.remove(position);
                 // and notify the position removed
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, mAddressSet.size());
+                notifyItemRangeChanged(position, mImgSet.size());
+                notifyItemRangeChanged(position, mTenantSet.size());
 
                 // Show the removed item label
                 Toast.makeText(mContext,"Removed : " + itemLabel,Toast.LENGTH_SHORT).show();
